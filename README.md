@@ -1,3 +1,3 @@
 # My EndeavourOS dotfiles ^^
 
-![Main desktop](./1.png)
+![Main desktop](./1.jpg)
