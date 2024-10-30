@@ -1,0 +1,7 @@
+[Default Applications]
+x-scheme-handler/eclipse+command x-scheme-handler/eclipse+mpc=_usr_lib_eclipse_.desktop
+x-scheme-handler/postman=Postman.desktop
+x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
+
+[Added Associations]
+application/x-sql=jetbrains-datagrip-ef90cca5-d218-48b7-b264-909791194e44.desktop;google-chrome.desktop;

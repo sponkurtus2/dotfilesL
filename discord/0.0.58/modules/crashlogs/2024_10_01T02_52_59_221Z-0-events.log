@@ -1,0 +1,8 @@
+2024-10-01T02:52:59.229Z 0: 
+
+----------------------------------------------
+2024-10-01T02:52:59.261Z 1: Discord starting: {"releaseChannel":"stable","version":"0.0.58"}, modulepath: /home/sponk2/.config/discord/0.0.58/modules
+2024-10-01T02:52:59.272Z 2: ✅ webContents.created web1 ""
+2024-10-01T02:52:59.281Z 3: ✅ window.created win1 "discord"
+2024-10-01T02:52:59.668Z 4: ✅ webContents.did-finish-load web1
+2024-10-01T02:55:07.586Z 5: before-quit

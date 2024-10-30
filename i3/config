@@ -1,0 +1,338 @@
+#######################
+# LazyVim config start here ^^ #
+#######################
+
+# Resize mode
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# bind the windows + r key to enter resize mode
+bindsym $mod+r mode "resize"
+
+# Rofi config 
+#bindsym $mod+d exec rofi -show drun -theme gruvbox-dark
+bindsym $mod+d exec ~/.config/rofi/launchers/type-1/launcher.sh
+# 5 6 7 14
+
+# Keyboard config to have deadtilde
+exec --no-startup-id setxkbmap -layout latam -variant deadtilde
+
+# Polybar config 
+exec_always bash ~/.config/polybar/launch_two.sh
+
+# my wallpaper 
+# exec --no-startup-id feh --bg-scale --randomize ~/Pictures/cozy/*
+exec --no-startup-id ~/.config/i3/random_wallpaper.sh
+
+# General font ig
+font pango:JetBrainsMono Nerd Font 10
+
+# set the mod key to the winkey:
+set $mod Mod4
+
+
+
+
+#####################
+# workspace layout: #
+#####################
+
+# default i3 tiling mode:
+workspace_layout default
+
+##############################
+# extra options for windows: #
+##############################
+
+#border indicator on windows:
+new_window pixel 1
+
+# Set inner/outer gaps
+gaps inner 7
+gaps outer 11
+# gaps top 40
+
+smart_gaps off
+smart_borders on
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# switch/iterate between workspaces
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+# switch to workspace
+bindsym $mod+1    workspace  $ws1
+bindsym $mod+2    workspace  $ws2
+bindsym $mod+3    workspace  $ws3
+bindsym $mod+4    workspace  $ws4
+bindsym $mod+5    workspace  $ws5
+bindsym $mod+6    workspace  $ws6
+bindsym $mod+7    workspace  $ws7
+bindsym $mod+8    workspace  $ws8
+bindsym $mod+9    workspace  $ws9
+bindsym $mod+0    workspace  $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1    move container to workspace  $ws1
+bindsym $mod+Shift+2    move container to workspace  $ws2
+bindsym $mod+Shift+3    move container to workspace  $ws3
+bindsym $mod+Shift+4    move container to workspace  $ws4
+bindsym $mod+Shift+5    move container to workspace  $ws5
+bindsym $mod+Shift+6    move container to workspace  $ws6
+bindsym $mod+Shift+7    move container to workspace  $ws7
+bindsym $mod+Shift+8    move container to workspace  $ws8
+bindsym $mod+Shift+9    move container to workspace  $ws9
+bindsym $mod+Shift+0    move container to workspace  $ws10
+
+######################################
+# keybindings for different actions: #
+######################################
+
+#Start picom
+exec --no-startup- picom --config ~/.config/picom/picom.conf 
+
+# start a terminal (kitty)
+bindsym $mod+Return exec --no-startup-id kitty
+
+# kill focused window
+bindsym $mod+q kill
+
+# exit-menu
+bindsym $mod+Shift+e exec --no-startup-id ~/.config/i3/scripts/powermenu
+
+# lock with a picture:
+bindsym $mod+l exec --no-startup-id i3lock -i  ~/Pictures/Ang/lockw.png -p default|win -t
+
+# lock by blurring the screen:
+# bindsym $mod+l exec --no-startup-id ~/.config/i3/scripts/blur-lock
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to update i3)
+bindsym $mod+Shift+r restart
+
+# Brightness control
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 10%-
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+b focus up
+bindsym $mod+o focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+g layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+# Small size
+bindsym $mod+Shift+space floating toggle
+
+# Medium size
+# bindsym $mod+Shit+p
+
+# Each time you create a floating windows, ceenter it and make it x size
+bindsym $mod+Shift+T [floating] resize set 1650 960, move position center
+# for_window [floating] resize set 1650 950, move position center
+# for_window [floating] exec ~/.config/i3/floating_window.sh
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# open new empty workspace
+bindsym $mod+Shift+n exec --no-startup-id ~/.config/i3/scripts/empty_workspace
+
+
+##########################
+# Multimedia Keys        #
+##########################
+
+# volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh volume_up
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh volume_down
+
+# gradular volume control
+bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 1%+ && pkill -RTMIN+1 i3blocks
+bindsym $mod+XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 1%- && pkill -RTMIN+1 i3blocks
+
+# mute
+bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh volume_mute
+
+# mic mute toggle
+bindsym XF86AudioMicMute exec amixer sset Capture toggle
+
+# audio control
+bindsym XF86AudioPlay exec --no-startup-id playerctl play
+bindsym XF86AudioPause exec --no-startup-id playerctl pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+
+# Redirect sound to headphones
+bindsym $mod+p exec --no-startup-id /usr/local/bin/switch-audio-port
+
+## App shortcuts
+## Firefox bindsym $mod+w exec --no-startup-id /usr/bin/firefox
+bindsym $mod+w exec --no-startup-id /usr/bin/firefox
+bindsym $mod+n exec --no-startup-id /usr/bin/thunar
+bindsym Print exec --no-startup-id scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
+
+
+# Key binding to open spotify
+bindsym $mod+Shift+s exec --no-startup-id /usr/bin/spotify
+
+# Key binding to open Discord
+bindsym $mod+i exec --no-startup-id /usr/bin/discord
+
+# Key binding to open zim notes 
+bindsym $mod+Shift+p exec --no-startup-id /usr/bin/zim
+
+##########################################
+# configuration for workspace behaviour: #
+##########################################
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "Code"
+set $ws2 "Browser"
+set $ws3 "Music"
+set $ws4 "Goland"
+set $ws5 "Zim"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# bind program to workspace and focus to them on startup:
+assign [class="kitty"] $ws1
+assign [class="firefox"] $ws2
+assign [class="Spotify"] $ws3
+assign [class="jetbrains-goland"] $ws4
+assign [class="Zim"] $ws5
+# automatic set focus new window if it opens on another workspace than the current:
+for_window [class=kitty] focus
+for_window [class=zen-browser] focus
+for_window [class=Spotify] focus
+for_window [class=discord] focus
+for_window [class=Zim] focus
+
+##############
+# compositor #
+##############
+
+
+#get auth work with polkit-gnome
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# dex execute .desktop files + apps using /etc/xdg/autostart.
+# when second to i3 a DE is installed or mixed usage of i3 + xfce4 or GNOME
+# in this cases better disable dex and use manual starting apps using xdg/autostart
+# if enabled you should comment welcome app.
+# https://github.com/jceb/dex
+#exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
+exec --no-startup-id dex --autostart --environment i3
+
+# start a script to setup displays
+# uncomment the next line, use arandr to setup displays and save the file as monitor:
+exec --no-startup-id ~/.screenlayout/monitor.sh
+
+
+# set powersavings for display:
+exec --no-startup-id xset s 480 dpms 600 600 600
+
+# Desktop notifications
+# dunst config used ~/.config/dunst/dunstrc
+exec --no-startup-id /usr/bin/dunst
+
+# Autostart apps as you like
+#exec --no-startup-id sleep 3 && thunar
+
+###############
+# system tray #
+###############
+
+# start blueberry app for managing bluetooth devices from tray:
+#exec --no-startup-id blueberry-tray
+
+##################
+# floating rules #
+##################
+
+# set floating (nontiling) for apps needing it
+for_window [class="Yad" instance="yad"] floating enable
+for_window [class="Galculator" instance="galculator"] floating enable
+for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+
+# set floating (nontiling) for special apps
+for_window [class="Xsane" instance="xsane"] floating enable
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+for_window [class="qt5ct" instance="qt5ct"] floating enable
+for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
+for_window [class="Pamac-manager"] floating enable
+for_window [window_role="About"] floating enable
+
+# set border of floating window
+for_window [class="urxvt"] border pixel 1
+for_window [class="Firefox"] border pixel 0
+
+######################################
+# color settings for bar and windows #
+######################################
+
+# Define colors variables:
+set $darkbluetrans	#08052be6
+set $darkblue		#08052b
+set $lightblue		#5294e2
+set $urgentred		#e53935
+set $white		#ffffff
+set $black		#000000
+set $purple		#e345ff
+set $darkgrey		#383c4a
+set $grey		#b0b5bd
+set $mediumgrey		#8b8b8b
+set $yellowbrown	#e1b700
+
+# define colors for windows:
+#class		        	border		bground		text		indicator	child_border
+client.focused		    	$lightblue	$darkblue	$white		$mediumgrey	$mediumgrey
+client.unfocused	    	$darkblue	$darkblue	$grey		$darkgrey	$darkgrey
+client.focused_inactive		$darkblue	$darkblue	$grey		$black		$black
+client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown

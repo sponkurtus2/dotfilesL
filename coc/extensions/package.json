@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "coc-tsserver": ">=2.2.0",
+    "coc-deno": ">=3.15.0"
+  }
+}

@@ -1,0 +1,17 @@
+["sponkurtus@outlook.com"]
+backend = "imap"
+email = "sponkurtus@outlook.com"
+default = true
+display-name = "Carlos Reyes"
+imap-host = "imap.outlook.com"
+imap-port = 143
+imap-login = "sponkurtus@outlook.com"
+imap-auth = "passwd"
+sender = "smtp"
+smtp-host = "smtp.outlook.com"
+smtp-port = 25
+smtp-login = "sponkurtus@outlook.com"
+smtp-auth = "passwd"
+
+["sponkurtus@outlook.com".pgp]
+backend = "none"
